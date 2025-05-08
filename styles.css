@@ -1,49 +1,74 @@
-/* Загальні стилі */
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 20px;
-    background-color: #f9f9f9;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f9f5f0;
     color: #333;
   }
   
-  /* Заголовки */
-  h1 {
-    color: #1e88e5;
-  }
-  
-  h2 {
-    color: #3949ab;
-    margin-top: 30px;
-  }
-  
-  /* Навігація */
-  nav ul {
-    list-style: none;
-    padding: 0;
+  .resume {
     display: flex;
-    gap: 15px;
-  }
-  
-  nav a {
-    text-decoration: none;
-    color: #1e88e5;
-  }
-  
-  /* Контейнер секцій */
-  section {
-    margin-bottom: 25px;
+    max-width: 1000px;
+    margin: 40px auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
     background: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
   
-  /* Футер */
-  footer {
-    text-align: center;
-    margin-top: 40px;
+  .left-column {
+    width: 35%;
+    background-color: #f0eae1;
+    padding: 30px;
+  }
+  
+  .right-column {
+    width: 65%;
+    padding: 40px;
+  }
+  
+  .profile-photo {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  header h1 {
+    font-size: 2em;
+    margin: 0;
+    color: #6c4f3d;
+  }
+  
+  header h2 {
+    font-size: 1.2em;
+    font-weight: normal;
+    color: #a28c73;
+    margin-bottom: 30px;
+  }
+  
+  h3 {
+    text-transform: uppercase;
     font-size: 0.9em;
-    color: #777;
+    margin-top: 30px;
+    color: #9b7653;
+  }
+  
+  p, ul {
+    font-size: 0.95em;
+    line-height: 1.5;
+  }
+  
+  a {
+    color: #a57442;
+    text-decoration: none;
+  }
+  
+  .skills {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .skills li {
+    background: #e3d6c5;
+    margin: 5px 0;
+    padding: 5px 10px;
+    border-radius: 4px;
   }
   
