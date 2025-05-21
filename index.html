@@ -2,66 +2,93 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Резюме — Павло Блиско</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="resume">
-    <div class="left-column">
-      <img src="materials/photo_2024-07-29_18-34-16.jpg" alt="Фото Павла" class="profile-photo">
+  <script src="scripts.js" defer></script>
 
-      <section>
-        <h3>Контакти</h3>
-        <p>Львів, Україна<br>
-        design.ua.ux.ui@gmail.com<br>
-        +380 68 556 80 87<br>
-        <a href="https://www.behance.net/pavloblysko" target="_blank">behance.net/pavloblysko</a></p>
-      </section>
-
-      <section>
-        <h3>Освіта</h3>
-        <p><strong>НУ «Львівська політехніка»</strong><br>Кібербезпека, 2022–дотепер</p>
-      </section>
-
-      <section>
-        <h3>Навички</h3>
-        <ul class="skills">
-          <li>Figma</li>
-          <li>HTML/CSS</li>
-          <li>Design Systems</li>
-          <li>Prototyping</li>
-          <li>UX Research</li>
-        </ul>
-      </section>
+<header>
+  <label>
+    <input class="toggle-checkbox" type="checkbox">
+    <div class="toggle-slot">
+      <div class="sun-icon-wrapper">
+        <div class="iconify sun-icon" data-icon="feather-sun" data-inline="false"></div>
+      </div>
+      <div class="toggle-button"></div>
+      <div class="moon-icon-wrapper">
+        <div class="iconify moon-icon" data-icon="feather-moon" data-inline="false"></div>
+      </div>
     </div>
+  </label>
+  <h1>Павло Блисько</h1>
+  <img src="./materials/photo_2024-07-29_18-34-16.jpg" alt="" width="300px">
+  <p>Web Designer, UI/UX Designer</p>
+</header>
 
-    <div class="right-column">
-      <header>
-        <h1>Павло Блиско</h1>
-        <h2>UI/UX дизайнер</h2>
-      </header>
+<nav class="nav-menu">
+  <ul>
+    <li><a href="#experience">Досвід</a></li>
+    <li><a href="#skills">Навички</a></li>
+    <li><a href="#education">Освіта</a></li>
+    <li><a href="#contacts">Контакти</a></li>
+  </ul>
+</nav>
 
-      <section>
-        <h3>Ціль</h3>
-        <p>Застосувати свої навички дизайну та UX для створення сучасних, ефективних веб-інтерфейсів, що задовольняють потреби користувачів.</p>
-      </section>
+<section id="experience">
+  <h2>Досвід роботи</h2>
+  <ul>
+    <li><strong>Racconn Digital Studio</strong>, липень 2024 – дотепер</li>
+    <li><strong>M Space</strong>, травень 2024 – червень 2024</li>
+    <li><strong>Pasika Kozyrevykh</strong>, квітень 2024 – травень 2024</li>
+    <li><strong>ParkPal</strong>, лютий 2024 – травень 2024</li>
+    <li><strong>Фріланс</strong>, липень 2023 – дотепер</li>
+    <li><strong>UX Designer з російськими клієнтами</strong>, липень 2021 – вересень 2021</li>
+  </ul>
+</section>
 
-      <section>
-        <h3>Досвід роботи</h3>
-        <p><strong>Racconn Digital Studio</strong> – липень 2024 – дотепер</p>
-        <p>Розробка дизайн-системи, створення адаптивних сайтів, користувацьке тестування.</p>
+<section id="skills">
+  <h2>Ключові навички</h2>
+  <ul>
+    <li>ISO 27001, SQL Injection, Cross-site scripting, Access control</li>
+    <li>Figma, Adobe Photoshop, HTML/CSS</li>
+    <li>Wireframing, Prototyping, User Flows, Design System</li>
+    <li>Responsive Web Design, Accessibility</li>
+    <li>User Research, Usability Testing</li>
+    <li>Командна робота, Agile, Monday, Asana, Slack</li>
+  </ul>
+</section>
 
-        <p><strong>M Space</strong> – травень 2024 – червень 2024</p>
-        <p>Дослідження користувачів, дизайн рішень для доступності товарів онлайн.</p>
+<section id="education">
+  <h2>Освіта</h2>
+  <p>Бакалавр кібербезпеки — Національний університет «Львівська Політехніка», 2022 – дотепер</p>
+</section>
 
-        <p><strong>ParkPal</strong> – лютий 2024 – травень 2024</p>
-        <p>Мобільний та десктоп-дизайн через Figma, прототипування, тестування.</p>
-        
-        <p><strong>Freelance</strong> – березень 2021 – дотепер</p>
-        <p>Мобільний та десктоп-дизайн через Figma, прототипування, тестування.</p>
-      </section>
-    </div>
-  </div>
+<section id="contacts">
+  <h2>Контактна інформація</h2>
+  <ul>
+    <li>Телефон: +380 68 556 80 87</li>
+    <li>Email: <a href="mailto:design.ua.ux.ui@gmail.com">design.ua.ux.ui@gmail.com</a></li>
+    <li>Портфоліо: <a href="https://www.behance.net/pavloblysko" target="_blank">Behance</a></li>
+  </ul>
+</section>
+
+<div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5)">
+  <button class="close-button" id="closeModal">&times;</button>
+  <form action="https://formspree.io/f/mldbnwbr" method="POST" style="background:white; padding:20px; max-width:400px; margin:100px auto;">
+    <h3>Зворотній зв'язок</h3>
+    <input name="name" placeholder="Ім’я" required><br>
+    <input name="email" type="email" placeholder="Email" required><br>
+    <input name="phone" placeholder="Телефон"><br>
+    <textarea name="message" placeholder="Ваше повідомлення"></textarea><br>
+    <button type="submit">Відправити</button>
+  </form>
+</div>
+
+
+<footer>
+  <p>&copy; 2025 Павло Блиско</p>
+</footer>
+
 </body>
 </html>
