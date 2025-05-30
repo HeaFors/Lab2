@@ -43,8 +43,13 @@ section {
 footer {
   text-align: center;
   margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 15px;
   font-size: 0.9em;
   color: #777;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -184,7 +189,7 @@ body #modal form {
   color: black;
 }
 
-body #modal input, 
+body #modal input,
 body #modal textarea {
   background-color: #f9f9f9;
   color: black;
@@ -198,6 +203,37 @@ body #modal button {
 
 body #modal button:hover {
   background-color: #0056b3;
+}
+
+/* Стилі для модального вікна у темній темі */
+body.dark #modal {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+body.dark #modal form {
+  background-color: #333;
+  color: white;
+}
+
+body.dark #modal input,
+body.dark #modal textarea {
+  background-color: #555;
+  color: white;
+  border: 1px solid #444;
+}
+
+body.dark #modal button {
+  background-color: #007bff;
+  color: white;
+}
+
+body.dark #modal button:hover {
+  background-color: #0056b3;
+}
+
+/* Додатковий стиль для кнопки закриття */
+body.dark .close-button {
+  color: white;
 }
 
 
@@ -328,4 +364,79 @@ body #modal button:hover {
   border: none;
   cursor: pointer;
   color: inherit;
+}
+
+/* Стилі для секції коментарів */
+.comments-section {
+  margin-bottom: 25px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Адаптація для темної теми */
+body.dark .comments-section {
+  background: #333;
+  color: #f5f5f5;
+}
+
+/* Стилі для картки коментаря */
+.comment-card {
+  display: flex;
+  align-items: flex-start;
+  background: #f5f5f5;
+  border-radius: 12px;
+  padding: 15px;
+  margin: 10px 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Адаптація для темної теми */
+body.dark .comment-card {
+  background: #444;
+  color: #f5f5f5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Стилі для аватарки */
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  background: #ccc;
+  border-radius: 50%;
+  margin-right: 15px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #1e88e5, #81c784);
+}
+
+/* Стилі для вмісту коментаря */
+.comment-content {
+  flex: 1;
+}
+
+/* Стилі для імені користувача */
+.comment-name {
+  font-weight: bold;
+  color: #1e88e5;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Адаптація імені для темної теми */
+body.dark .comment-name {
+  color: #81c784;
+}
+
+/* Стилі для тексту коментаря */
+.comment-body {
+  margin: 0;
+  font-size: 0.95em;
+  color: #333;
+}
+
+/* Адаптація тексту для темної теми */
+body.dark .comment-body {
+  color: #ddd;
 }

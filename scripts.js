@@ -1,91 +1,109 @@
 // Зберігаємо дані про браузер і ОС
-localStorage.setItem("platform", navigator.platform);
-localStorage.setItem("userAgent", navigator.userAgent);
+  localStorage.setItem("platform", navigator.platform);
+  localStorage.setItem("userAgent", navigator.userAgent);
 
-// Виводимо у футері
-const footer = document.querySelector("footer");
-const platform = localStorage.getItem("platform");
-const userAgent = localStorage.getItem("userAgent");
+  // Виводимо у футері
+  const footer = document.querySelector("footer");
+  const platform = localStorage.getItem("platform");
+  const userAgent = localStorage.getItem("userAgent");
 
-const info = document.createElement("p");
-info.textContent = `Платформа: ${platform}, Браузер: ${userAgent}`;
-footer.appendChild(info);
+  const info = document.createElement("p");
+  info.textContent = `Платформа: ${platform}, Браузер: ${userAgent}`;
+  footer.appendChild(info);
 
-
-// Заміни 1 на свій номер варіанту в журналі
-fetch("https://jsonplaceholder.typicode.com/posts/4/comments")
-  .then(response => response.json())
-  .then(data => {
-    const section = document.createElement("section");
-    section.innerHTML = "<h3>Відгуки роботодавців</h3>";
-    data.forEach(comment => {
-      const p = document.createElement("p");
-      p.textContent = `${comment.name}: ${comment.body}`;
-      section.appendChild(p);
+  // Завантаження коментарів з API
+  fetch("https://jsonplaceholder.typicode.com/posts/4/comments")
+    .then(response => {
+      console.log('API response status:', response.status); // Дебаг: статус відповіді
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Fetched data:', data); // Дебаг: виводимо отримані дані
+      const section = document.createElement("section");
+      section.classList.add("comments-section");
+      section.innerHTML = "<h3>Відгуки роботодавців</h3>";
+      if (data.length > 0) {
+        data.forEach(comment => {
+          const commentCard = document.createElement("div");
+          commentCard.classList.add("comment-card");
+          commentCard.innerHTML = `
+            <div class="comment-avatar"></div>
+            <div class="comment-content">
+              <span class="comment-name">${comment.name}</span>
+              <p class="comment-body">${comment.body}</p>
+            </div>
+          `;
+          section.appendChild(commentCard);
+        });
+      } else {
+        console.log('No comments found in the API response');
+      }
+      // Вставляємо секцію коментарів перед футером
+      document.body.insertBefore(section, footer);
+      console.log('Section added before footer'); // Дебаг: підтвердження додавання
+    })
+    .catch(error => {
+      console.error('Error fetching comments:', error); // Дебаг: виводимо помилки
     });
-    document.body.appendChild(section);
-  });
 
-
-  // JavaScript: Показуємо модальне вікно через 1 хвилину
-window.addEventListener('load', function() {
-    // Показуємо модальне вікно через 60 секунд
+  // Показ модального вікна через 1 хвилину
+  window.addEventListener('load', function() {
     setTimeout(function() {
       document.getElementById('modal').style.display = 'block';
-    }, 60000); // 60000 мс = 1 хвилина
+    }, 60000);
   });
 
-  // Відкрити через 60 секунд
-setTimeout(() => {
-  document.getElementById('modal').classList.remove('hidden');
-}, 60000);
+  // Закриття модального вікна
+  document.getElementById('closeModal').addEventListener('click', function () {
+    document.getElementById('modal').style.display = 'none';
+  });
 
-// Закрити вручну
-document.getElementById('closeModal').addEventListener('click', () => {
-  document.getElementById('modal').classList.add('hidden');
-});
-
-// Синхронізація теми
-function updateModalTheme(isDark) {
-  const root = document.querySelector(':root');
-  root.style.setProperty('--bg-color', isDark ? '#1e1e1e' : '#ffffff');
-  root.style.setProperty('--text-color', isDark ? '#ffffff' : '#000000');
-}
-
-// Приклад: темна тема активна
-updateModalTheme(true); // або false для світлої
-
-
-document.addEventListener('DOMContentLoaded', function () {
-  const toggleCheckbox = document.querySelector('.toggle-checkbox');
-
-  // Check the current theme from localStorage (if previously set)
-  if (localStorage.getItem('theme') === 'dark') {
-    document.body.classList.add('dark');
-    toggleCheckbox.checked = true;
-  } else {
-    document.body.classList.add('light');
-    toggleCheckbox.checked = false;
+  // Функція для визначення часу
+  function isDayTime() {
+    const now = new Date();
+    const hours = now.getHours();
+    console.log('Current hour:', hours, 'isDayTime:', hours >= 7 && hours < 21);
+    return hours >= 7 && hours < 21; // Денна тема з 07:00 до 21:00
   }
 
-  toggleCheckbox.addEventListener('change', function () {
-    if (toggleCheckbox.checked) {
-      document.body.classList.remove('light');
-      document.body.classList.add('dark');
-      localStorage.setItem('theme', 'dark'); // Save theme preference
+  // Функція для оновлення теми
+  function setTheme(isDark) {
+    const body = document.body;
+    const toggleCheckbox = document.querySelector('.toggle-checkbox');
+    console.log('Setting theme to:', isDark ? 'dark' : 'light', 'body classes:', body.className);
+    if (isDark) {
+      body.classList.remove('light');
+      body.classList.add('dark');
+      toggleCheckbox.checked = true;
+      localStorage.setItem('theme', 'dark');
     } else {
-      document.body.classList.remove('dark');
-      document.body.classList.add('light');
-      localStorage.setItem('theme', 'light'); // Save theme preference
+      body.classList.remove('dark');
+      body.classList.add('light');
+      toggleCheckbox.checked = false;
+      localStorage.setItem('theme', 'light');
     }
-  });
-});
-  
-document.addEventListener('DOMContentLoaded', function () {
-  const closeModalBtn = document.getElementById('closeModal');
-  const modal = document.getElementById('modal');
+  }
 
-  closeModalBtn.addEventListener('click', function () {
-    modal.style.display = 'none';
+  // Автоматичне встановлення теми при завантаженні
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggleCheckbox = document.querySelector('.toggle-checkbox');
+    const savedTheme = localStorage.getItem('theme');
+    console.log('DOM loaded, savedTheme:', savedTheme, 'isDayTime:', isDayTime());
+    if (savedTheme) {
+      setTheme(savedTheme === 'dark');
+    } else {
+      setTheme(!isDayTime()); // Застосовує денну тему, якщо isDayTime() = true
+    }
+    toggleCheckbox.addEventListener('change', function () {
+      setTheme(toggleCheckbox.checked);
+    });
   });
-});
+
+  // Оновлення теми щогодини
+  setInterval(() => {
+    console.log('Checking theme at:', new Date().toLocaleTimeString(), 'isDayTime:', isDayTime());
+    setTheme(!isDayTime());
+  }, 3600000); // 1 година
